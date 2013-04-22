@@ -561,6 +561,3 @@ module.exports = function PouchAdapter (opts, callback) {
   return customApi;
 };
 
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = PouchAdapter;
-}

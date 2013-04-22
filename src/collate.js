@@ -1,6 +1,5 @@
 'use strict';
 
-
 var stringCollate = function(a, b) {
   // See: https://github.com/daleharvey/pouchdb/issues/40
   // This is incompatible with the CouchDB implementation, but its the
@@ -82,4 +81,4 @@ function collate(a, b) {
   }
 };
 
-module.exports = collate
+module.exports = collate;

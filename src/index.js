@@ -73,8 +73,6 @@ function Pouch (name, opts, callback) {
   }
 };
 
-module.exports = Pouch
-
 Pouch.DEBUG = false;
 
 Pouch.adapters = {};
@@ -368,35 +366,13 @@ Pouch.Errors = {
 };
 
 
-module.exports.merge = require('./merge')
-module.exports.collate = require('./collate')
-module.exports.replicate = require('./replicate')
-module.exports.utils = require('./utils')
-var extend = module.exports.utils.extend
+module.exports = Pouch;
+module.exports.merge = require('./merge');
+module.exports.collate = require('./collate');
+module.exports.replicate = require('./replicate');
+module.exports.utils = require('./utils');
 
 Pouch.error = function(error, reason){
- return extend({}, error, {reason: reason});
+ return module.exports.utils.extend({}, error, {reason: reason});
 };
 
-//
-// module.exports.extend =
-//
-// if (typeof module !== 'undefined' && module.exports) {
-//   global.Pouch = Pouch;
-//   Pouch.merge = require('./pouch.merge.js').merge;
-//   Pouch.collate = require('./pouch.collate.js').collate;
-//   Pouch.replicate = require('./pouch.replicate.js').replicate;
-//   Pouch.utils = require('./pouch.utils.js');
-//   extend = Pouch.utils.extend;
-//   module.exports = Pouch;
-//   var PouchAdapter = require('./pouch.adapter.js');
-//   //load adapters known to work under node
-//   var adapters = ['leveldb', 'http'];
-//   adapters.map(function(adapter) {
-//     var adapter_path = './adapters/pouch.'+adapter+'.js';
-//     require(adapter_path);
-//   });
-//   require('./plugins/pouchdb.mapreduce.js');
-// } else {
-//   window.Pouch = Pouch;
-// }

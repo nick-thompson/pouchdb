@@ -223,7 +223,7 @@ function replicate(src, target, opts, promise) {
 
 }
 
-function replicate (src, target, opts, callback) {
+module.exports = function (src, target, opts, callback) {
 
   function toPouch(db, callback) {
     if (typeof db === 'string') {
@@ -253,6 +253,6 @@ function replicate (src, target, opts, callback) {
     });
   });
   return replicateRet;
+
 };
 
-module.exports = replicate
