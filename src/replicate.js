@@ -1,11 +1,3 @@
-/*globals call: false, Crypto: false*/
-
-'use strict';
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = Pouch;
-}
-
 // We create a basic promise so the caller can cancel the replication possibly
 // before we have actually started listening to changes etc
 var Promise = function() {
@@ -231,14 +223,15 @@ function replicate(src, target, opts, promise) {
 
 }
 
-function toPouch(db, callback) {
-  if (typeof db === 'string') {
-    return new Pouch(db, callback);
-  }
-  callback(null, db);
-}
+function replicate (src, target, opts, callback) {
 
-Pouch.replicate = function(src, target, opts, callback) {
+  function toPouch(db, callback) {
+    if (typeof db === 'string') {
+      return new require('./')(db, callback);
+    }
+    callback(null, db);
+  }
+
   if (opts instanceof Function) {
     callback = opts;
     opts = {};
@@ -261,3 +254,5 @@ Pouch.replicate = function(src, target, opts, callback) {
   });
   return replicateRet;
 };
+
+module.exports = replicate

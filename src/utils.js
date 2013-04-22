@@ -275,18 +275,18 @@ var isCordova = function(){
 
 if (typeof module !== 'undefined' && module.exports) {
   // use node.js's crypto library instead of the Crypto object created by deps/uuid.js
-  var crypto = require('crypto');
   var Crypto = {
     MD5: function(str) {
+      var crypto = require('crypto');
       return crypto.createHash('md5').update(str).digest('hex');
     }
   };
   var extend = require('./deps/extend');
   var ajax = require('./deps/ajax');
 
-  request = require('request');
-  _ = require('underscore');
-  $ = _;
+  // request = require('request');
+  // _ = require('underscore');
+  // $ = _;
 
   module.exports = {
     Crypto: Crypto,
@@ -321,7 +321,7 @@ if (typeof module !== 'undefined' && module.exports) {
   };
 }
 
-var Changes = function() {
+var Changes = function () {
 
   var api = {};
   var listeners = {};

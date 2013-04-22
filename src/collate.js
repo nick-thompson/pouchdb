@@ -1,9 +1,5 @@
 'use strict';
 
-// a few hacks to get things in the right place for node.js
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = Pouch;
-}
 
 var stringCollate = function(a, b) {
   // See: https://github.com/daleharvey/pouchdb/issues/40
@@ -17,12 +13,12 @@ var objectCollate = function(a, b) {
   var len = Math.min(ak.length, bk.length);
   for (var i = 0; i < len; i++) {
     // First sort the keys
-    var sort = Pouch.collate(ak[i], bk[i]);
+    var sort = collate(ak[i], bk[i]);
     if (sort !== 0) {
       return sort;
     }
     // if the keys are equal sort the values
-    sort = Pouch.collate(a[ak[i]], b[bk[i]]);
+    sort = collate(a[ak[i]], b[bk[i]]);
     if (sort !== 0) {
       return sort;
     }
@@ -35,7 +31,7 @@ var objectCollate = function(a, b) {
 var arrayCollate = function(a, b) {
   var len = Math.min(a.length, b.length);
   for (var i = 0; i < len; i++) {
-    var sort = Pouch.collate(a[i], b[i]);
+    var sort = collate(a[i], b[i]);
     if (sort !== 0) {
       return sort;
     }
@@ -60,7 +56,7 @@ var collationIndex = function(x) {
   }
 };
 
-Pouch.collate = function(a, b) {
+function collate(a, b) {
   var ai = collationIndex(a);
   var bi = collationIndex(b);
   if ((ai - bi) !== 0) {
@@ -85,3 +81,5 @@ Pouch.collate = function(a, b) {
     return objectCollate(a, b);
   }
 };
+
+module.exports = collate

@@ -1,13 +1,5 @@
-/*globals Pouch: true, yankError: false, extend: false, call: false, parseDocId: false, traverseRevTree: false */
-/*globals arrayFirst: false, rootToLeaf: false, computeHeight: false */
-/*globals cordova, isCordova */
 
-"use strict";
-
-/*
- * A generic pouch adapter
- */
-var PouchAdapter = function(opts, callback) {
+module.exports = function PouchAdapter (opts, callback) {
 
   var api = {};
 
